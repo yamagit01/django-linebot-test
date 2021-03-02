@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -126,6 +126,8 @@ except ImportError:
 
 if not DEBUG:
     import os
-    SECRET_KEY = os.environ['SECRET_KEY']
     import django_heroku
+    SECRET_KEY = os.environ['SECRET_KEY']
+    CHANNEL_SECRET = os.environ['CHANNEL_SECRET']
+    CHANNEL_ACCESS_TOKEN = os.environ['CHANNEL_ACCESS_TOKEN']
     django_heroku.settings(locals())
